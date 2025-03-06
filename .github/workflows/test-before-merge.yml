@@ -1,0 +1,29 @@
+name: Code Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-code:
+    name: Validate HTML & CSS
+    runs-on: windows-latest  # Menggunakan Windows OS
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install -g htmlhint stylelint stylelint-config-standard
+
+      - name: Validate HTML with HTMLHint
+        run: htmlhint "**/*.html"
+
+      - name: Validate CSS with Stylelint
+        run: stylelint "**/*.css"
