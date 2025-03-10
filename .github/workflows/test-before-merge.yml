@@ -26,4 +26,4 @@ jobs:
         run: htmlhint "**/*.html"
 
       - name: Validate CSS with Stylelint
-        run: stylelint "**/*.css"
+        run: stylelint "**/*.css" --allow-empty-input
